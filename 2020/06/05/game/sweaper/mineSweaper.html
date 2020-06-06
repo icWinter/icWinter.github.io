@@ -56,7 +56,7 @@
         step;
         mineIndexArray = [];
         gameOver = false;
-        mineNum = 12
+        mineNum = 15
         ctx.clearRect(0, 0, canvasSize, canvasSize);
         inintMap(canvasSize);
     }
@@ -210,6 +210,15 @@
             }
         }
         gameOver = true;
+        for (var i = 0; i < mineIndexArray.length; i++) {
+            // 结束渲染所有骷髅头
+            var cell = cellArray[mineIndexArray[i]];
+            ctx.fillStyle = '#242424';
+            ctx.fillRect(cell.xPix, cell.yPix, step, step);
+            ctx.fillStyle = "#33FF33";
+            ctx.font = "60px serif";
+            ctx.fillText("☠", cell.xPix + step / 15, cell.yPix + step / 1.2);
+        }
         setTimeout(function () {
             // 这里就是处理的事件
             window.alert("Congratulations !");
