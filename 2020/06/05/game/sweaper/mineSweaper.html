@@ -10,7 +10,8 @@
     <br />
     <br />
     <div style="text-align:center">
-        <canvas id="canvas">画布</canvas>
+        <canvas id="canvas">画布</canvas><br>
+        <button type="button" id="reset">重置地图</button>
     </div>
 </body>
 
@@ -23,16 +24,20 @@
     var mapSize = 700;
     var canvasSize = 700 + lineWidth;
 
-    var cellArray = [];
+    var cellArray;
     // var cellCount = 0;
     var step;
-    var mineIndexArray = [];
+    var mineIndexArray;
+    var gameOver;
+    var button;
 
     initCtx(canvasSize, 600);
+    reStart();
 
     // 重新初始化一下画布
     function initCtx(side, r) {
         canvas = document.getElementById('canvas');
+        button = document.getElementById('reset');
         //  计算画布的宽度
         var width = canvas.offsetWidth;
         //  计算画布的高度
@@ -41,23 +46,53 @@
         canvas.width = side;
         canvas.height = side;
         ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, side, side);
-        addEvent(canvas);
-        inintMap(side);
+        addEvent();
+    }
+
+    function reStart() {
+        cellArray = [];
+        // var cellCount = 0;
+        step;
+        mineIndexArray = [];
+        gameOver = false;
+        ctx.clearRect(0, 0, canvasSize, canvasSize);
+        inintMap(canvasSize);
     }
 
     // 绑定事件
-    function addEvent(canvas) {
+    function addEvent() {
+        // 重置地图
+        button.addEventListener('click', function (e) {
+            reStart();
+        });
+        // 按钮绑定事件
         canvas.addEventListener('click', function (e) {
+            if (gameOver) {
+                return;
+            }
             if (containPoint(e.offsetX, e.offsetY)) {
                 var index = getCellPosition(e.offsetX, e.offsetY);
                 if (cellArray[index].checked == 0) {
-                    checkSquare(cellArray[index]);
+                    clickCheckSquare(cellArray[index], null);
                 }
             } else {
                 window.alert("请点击网格内部！");
             }
-        })
+        });
+        canvas.addEventListener('contextmenu', function (e) {
+            event.preventDefault();
+            if (gameOver) {
+                return;
+            }
+            if (containPoint(e.offsetX, e.offsetY)) {
+                var index = getCellPosition(e.offsetX, e.offsetY);
+                if (cellArray[index].checked < 2) {
+                    rightClickCheckSquare(cellArray[index]);
+                }
+            } else {
+                window.alert("请点击网格内部！");
+            }
+        });
     }
 
     // 初始化地图
@@ -96,50 +131,99 @@
     }
 
     // 画矩形
-    function checkSquare(cell) {
-        if(cell.checked !=0){
-            return;
-        }
-        cell.checked=2;
+    function rightClickCheckSquare(cell) {
+        drawSquare(cell, "☢");
+    }
+
+    // 画矩形
+    function clickCheckSquare(cell) {
+        cell.checked = 2;
         if (cell.mineSign == 1) {
-            ctx.fillStyle = "#F14141";
-            ctx.fillRect(cell.xPix, cell.yPix, step, step);
-            ctx.fillStyle = "#060B0B";
-            ctx.font = "48px serif";
-            ctx.fillText("☠", cell.xPix + step / 8, cell.yPix + step / 1.25);
-        } else if(cell.mineNum > 0){
+            // 猜错，显示所有地雷
+            showMine(cell);
+        } else if (cell.mineNum > 0) {
             ctx.fillStyle = "#63D0D0";
             ctx.fillRect(cell.xPix, cell.yPix, step, step);
             ctx.fillStyle = "#060B0B";
             ctx.font = "48px serif";
             ctx.fillText(cell.mineNum, cell.xPix + step / 3.5, cell.yPix + step / 1.25);
-        }else{
+        } else {
             // 扩展算法
-            drawSquare(cell);
-            var cellArr = getBorderCell(cell);
-            for(var i = 0 ; i < cellArr.length ; i++){
-                checkSquare(cellArr[i]);
+            drawSquare(cell, null);
+            // 获取周围单元格
+            var cellArr = get8BorderCell(cell);
+            for (var i = 0; i < cellArr.length; i++) {
+                if (cellArr[i].checked == 2) {
+                    continue;
+                }
+                clickCheckSquare(cellArr[i]);
+            }
+        }
+    }
+
+    function showMine(c) {
+        gameOver = true;
+        for (var i = 0; i < mineIndexArray.length; i++) {
+            var cell = cellArray[mineIndexArray[i]];
+            ctx.fillStyle = "#F14141";
+            ctx.fillRect(cell.xPix, cell.yPix, step, step);
+            ctx.fillStyle = "#060B0B";
+            ctx.font = "60px serif";
+            ctx.fillText("☠", cell.xPix + step / 15, cell.yPix + step / 1.2);
+            if (cell.checked == 1) {
+                ctx.fillStyle = "#33CC52";
+                ctx.font = "70px serif";
+                ctx.fillText("√", cell.xPix-5, cell.yPix + step / 1.2);
+            }
+            if (c == cell) {
+                ctx.font = "80px serif";
+                ctx.fillText("×", cell.xPix - 5, cell.yPix + step / 1.1);
+            }
+        }
+        // 矫正错误标记
+        ctx.fillStyle = "#F14141";
+        for (var i = 0; i < cellArray.length; i++) {
+            if (cellArray[i].checked == 1 && cellArray[i].mineSign == 0) {
+                ctx.font = "80px serif";
+                ctx.fillText("×", cellArray[i].xPix - 5, cellArray[i].yPix + step / 1.1);
             }
         }
     }
 
     // 画矩形
-    function drawSquare(cell) {
+    function drawSquare(cell, text) {
+        if (null != text) {
+            if (cell.checked == 0) {
+                ctx.fillStyle = '#0066CC';
+                ctx.fillRect(cell.xPix, cell.yPix, step, step);
+                ctx.fillStyle = '#060B0B';
+                ctx.font = "60px serif";
+                ctx.fillText(text, cell.xPix + step / 8, cell.yPix + step / 1.25);
+                cell.checked = 1;
+            } else if (cell.checked == 1) {
+                ctx.fillStyle = '#1A1AE6';
+                ctx.fillRect(cell.xPix, cell.yPix, step, step);
+                cell.checked = 0;
+            }
+            return;
+        }
         if (cell.mineSign == 1) {
             ctx.fillStyle = "#F14141";
             ctx.fillRect(cell.xPix, cell.yPix, step, step);
             ctx.fillStyle = "#060B0B";
             ctx.font = "48px serif";
-            ctx.fillText("☠", cell.xPix + step / 8, cell.yPix + step / 1.25);
+            ctx.fillText(cell.mineNum, cell.xPix + step / 8, cell.yPix + step / 1.25);
         } else {
             ctx.fillStyle = "#63D0D0";
             ctx.fillRect(cell.xPix, cell.yPix, step, step);
-            ctx.fillStyle = "#060B0B";
-            ctx.font = "48px serif";
-            ctx.fillText(cell.mineNum, cell.xPix + step / 3.5, cell.yPix + step / 1.25);
+            if (cell.mineNum > 0) {
+                ctx.fillStyle = "#060B0B";
+                ctx.font = "48px serif";
+                ctx.fillText(cell.mineNum, cell.xPix + step / 3.5, cell.yPix + step / 1.25);
+            }
         }
-
     }
+
 
     function containPoint(x, y) {
         if (x < 0 || x > mapSize || y < 0 || y > mapSize) {
@@ -189,10 +273,10 @@
     // 计算周围地雷数量
     function calculateMineNum() {
         for (var i = 0; i < mineIndexArray.length; i++) {
-            var cellArr = getBorderCell(cellArray[mineIndexArray[i]]);
+            var cellArr = get8BorderCell(cellArray[mineIndexArray[i]]);
             for (var j = 0; j < cellArr.length; j++) {
                 mineCount = 0;
-                var cArr = getBorderCell(cellArr[j]);
+                var cArr = get8BorderCell(cellArr[j]);
                 for (var k = 0; k < cArr.length; k++) {
                     if (cArr[k].mineSign == 1) {
                         mineCount++;
@@ -203,8 +287,8 @@
         }
     }
 
-    // 获取相邻单元格
-    function getBorderCell(cell) {
+    // 获取相邻8单元格
+    function get8BorderCell(cell) {
         var cellArr = [];
         var count = 0;
         for (var i = -1; i < 2; i++) {
@@ -218,6 +302,25 @@
                 cellArr[count] = cellArray[10 * (cell.x + i) + cell.y + j];
                 count++;
             }
+        }
+        return cellArr;
+    }
+
+    // 获取相邻4单元格
+    function get4BorderCell(cell) {
+        var cellArr = [];
+        var count = 0;
+        if (cell.x - 1 >= 0) {
+            cellArr[0] = cellArray[10 * (cell.x - 1) + cell.y];
+        }
+        if (cell.x + 1 <= 9) {
+            cellArr[1] = cellArray[10 * (cell.x + 1) + cell.y];
+        }
+        if (cell.y - 1 >= 0) {
+            cellArr[2] = cellArray[10 * cell.x + cell.y - 1];
+        }
+        if (cell.y + 1 <= 9) {
+            cellArr[3] = cellArray[10 * cell.x + cell.y + 1];
         }
         return cellArr;
     }
