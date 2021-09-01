@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TextBus 示例</title>
+  <link href="https://textbus.tanboui.com/static/textbus.min.css" rel="stylesheet">
+  <script src="https://textbus.tanboui.com/static/textbus.min.js"></script>
+</head>
+<body>
+  <div id="editor"></div>
+  <script>
+     var editor = textbus.createEditor(document.getElementById('editor'));
+     editor.onChange.subscribe(function() {
+       console.log(editor.getContents());
+     })
+  </script>
+</body>
+</html>
