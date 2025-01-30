@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="stui-pannel">
+                    <div class="stui-pannel__hd">
+                        <header class="stui-header clearfix">
+                            <div class="container">
+                                <div class="row">
+                                    <ul class="stui_header__user">
+                                        <li>
+                                            <a href="javascript:;">
+                                                <i class="iconfont icon-search"></i>
+                                            </a>
+                                            <div class="dropdown search">
+                                                <div class="item">
+                                                    <form id="search" name="search" method="get" action="/search/-------------.html" onSubmit="return qrsearch();">
+                                                        <input type="text" id="wd" name="wd" class="form-control" value="" placeholder="请输入关键词..."/>
+                                                        <button class="submit" id="searchbutton" type="submit" name="submit">
+                                                            <i class="icon iconfont icon-search"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <ul>
+                                                    <li>
+                                                        <a href="/search/-------------.html"></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <i class="iconfont icon-viewgallery"></i>
+                                            </a>
+                                            <ul class="dropdown type clearfix">
+                                                <li>
+                                                    <a href="/">首页</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/type/1.html">电影</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/type/2.html">剧集</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/type/4.html">动漫</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/type/15.html">日韩剧</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/type/16.html">欧美剧</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <i class="iconfont icon-clock"></i>
+                                            </a>
+                                            <div class="dropdown history">
+                                                <div class="head">
+                                                    <a class="historyclean pull-right" href="">清空</a>
+                                                    <h5>播放记录</h5>
+                                                </div>
+                                                <ul class="clearfix" id="stui_history"></ul>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="/gbook.html">
+                                                <i class="icon iconfont icon-comments"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/rootnetwork/fabu2.php">
+                                                <i>APP</i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="stui-header__logo">
+                                        <a class="logo" href="/"></a>
+                                    </div>
+                                    <ul class="stui-header__menu">
+                                        <li>
+                                            <a href="/">首页</a>
+                                        </li>
+                                        <li>
+                                            <a href="/type/1.html">电影</a>
+                                        </li>
+                                        <li>
+                                            <a href="/type/2.html">剧集</a>
+                                        </li>
+                                        <li>
+                                            <a href="/type/4.html">动漫</a>
+                                        </li>
+                                        <li>
+                                            <a href="/type/15.html">日韩剧</a>
+                                        </li>
+                                        <li>
+                                            <a href="/type/16.html">欧美剧</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </header>
+                        <script type="text/javascript">
+                            $(".stui_header__user li a").click(function() {
+                                $(this).parent().find(".dropdown").toggle();
+                                $(this).parent().siblings().find(".dropdown").hide();
+                            });
+                        </script>
+                    </div>
+                    <div class="container">
+                        <div class="stui-pannel__bd clearfix">
+                            <div class="stui-screen">
+                                <div class="head clearfix">
+                                    <a href="javascript:;" class="open-screen pull-right">
+                                        展开 <i class="iconfont icon-moreunfold"></i>
+                                    </a>
+                                    <span class="text">已选择：最新-电影 </span>
+                                </div>
+                                <div class="item" id="screenbox" style="display: none;">
+                                    <ul class="clearfix">
+                                        <li>
+                                            <span>按剧情：</span>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1---%E5%96%9C%E5%89%A7--------.html">喜剧</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1---%E7%88%B1%E6%83%85--------.html">爱情</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1---%E6%81%90%E6%80%96--------.html">恐怖</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1---%E5%8A%A8%E4%BD%9C--------.html">动作</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1---%E7%A7%91%E5%B9%BB--------.html">科幻</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1---%E5%89%A7%E6%83%85--------.html">剧情</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1---%E6%88%98%E4%BA%89--------.html">战争</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1---%E8%AD%A6%E5%8C%AA--------.html">警匪</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1---%E7%8A%AF%E7%BD%AA--------.html">犯罪</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1---%E5%8A%A8%E7%94%BB--------.html">动画</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1---%E5%A5%87%E5%B9%BB--------.html">奇幻</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1---%E6%AD%A6%E4%BE%A0--------.html">武侠</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1---%E5%86%92%E9%99%A9--------.html">冒险</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1---%E6%9E%AA%E6%88%98--------.html">枪战</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1---%E6%81%90%E6%80%96--------.html">恐怖</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1---%E6%82%AC%E7%96%91--------.html">悬疑</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1---%E6%83%8A%E6%82%9A--------.html">惊悚</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1---%E7%BB%8F%E5%85%B8--------.html">经典</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1---%E9%9D%92%E6%98%A5--------.html">青春</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1---%E6%96%87%E8%89%BA--------.html">文艺</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1---%E5%BE%AE%E7%94%B5%E5%BD%B1--------.html">微电影</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1---%E5%8F%A4%E8%A3%85--------.html">古装</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1---%E5%8E%86%E5%8F%B2--------.html">历史</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1---%E8%BF%90%E5%8A%A8--------.html">运动</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1---%E5%86%9C%E6%9D%91--------.html">农村</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1---%E5%84%BF%E7%AB%A5--------.html">儿童</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1---%E7%BD%91%E7%BB%9C%E7%94%B5%E5%BD%B1--------.html">网络电影</a>
+                                        </li>
+                                    </ul>
+                                    <ul class="clearfix">
+                                        <li>
+                                            <span>按地区：</span>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86----------.html">中国大陆</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-%E4%B8%AD%E5%9B%BD%E9%A6%99%E6%B8%AF----------.html">中国香港</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-%E4%B8%AD%E5%9B%BD%E5%8F%B0%E6%B9%BE----------.html">中国台湾</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-%E7%BE%8E%E5%9B%BD----------.html">美国</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-%E6%B3%95%E5%9B%BD----------.html">法国</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-%E8%8B%B1%E5%9B%BD----------.html">英国</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-%E6%97%A5%E6%9C%AC----------.html">日本</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-%E9%9F%A9%E5%9B%BD----------.html">韩国</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-%E5%BE%B7%E5%9B%BD----------.html">德国</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-%E6%B3%B0%E5%9B%BD----------.html">泰国</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-%E5%8D%B0%E5%BA%A6----------.html">印度</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-%E6%84%8F%E5%A4%A7%E5%88%A9----------.html">意大利</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-%E8%A5%BF%E7%8F%AD%E7%89%99----------.html">西班牙</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1-%E5%8A%A0%E6%8B%BF%E5%A4%A7----------.html">加拿大</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1-%E5%85%B6%E4%BB%96----------.html">其他</a>
+                                        </li>
+                                    </ul>
+                                    <ul class="clearfix">
+                                        <li>
+                                            <span>按年份：</span>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-----------2025.html">2025</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-----------2024.html">2024</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-----------2023.html">2023</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-----------2022.html">2022</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-----------2021.html">2021</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-----------2020.html">2020</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-----------2019.html">2019</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-----------2018.html">2018</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-----------2017.html">2017</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-----------2016.html">2016</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-----------2015.html">2015</a>
+                                        </li>
+                                        <li>
+                                            <a href="/show/1-----------2014.html">2014</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1-----------2013.html">2013</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1-----------2012.html">2012</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1-----------2011.html">2011</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1-----------2010.html">2010</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1-----------2009.html">2009</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1-----------2008.html">2008</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1-----------2007.html">2007</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1-----------2006.html">2006</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1-----------2005.html">2005</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1-----------2004.html">2004</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1-----------2003.html">2003</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1-----------2002.html">2002</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1-----------2001.html">2001</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1-----------1999.html">1999</a>
+                                        </li>
+                                        <li>
+                                            <a class="hide" href="/show/1-----------1998.html">1998</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <ul class="stui-vodlist clearfix">
+                                <li>
+                                    <div class="stui-vodlist__box">
+                                        <a class="stui-vodlist__thumb lazyload" href="/detail/714892244.html" title="落凡尘" data-original="https://y.gtimg.cn/music/photo_new/T053M0000037G1wu1yDWut.jpg">
+                                            <span class="play hidden-xs"></span>
+                                            <span class="pic-text text-right">网盘</span>
+                                            <span class="pic-tag pic-tag-top">7.9</span>
+                                        </a>
+                                        <div class="stui-vodlist__detail">
+                                            <h4 class="title text-overflow">
+                                                <a href="/detail/714892244.html" title="落凡尘">落凡尘</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="stui-vodlist__box">
+                                        <a class="stui-vodlist__thumb lazyload" href="/detail/714892238.html" title="孤海沙堡" data-original="https://y.gtimg.cn/music/photo_new/T053M000002fLQcx0cZe4x.jpg">
+                                            <span class="play hidden-xs"></span>
+                                            <span class="pic-text text-right">已完结</span>
+                                            <span class="pic-tag pic-tag-top">0.0</span>
+                                        </a>
+                                        <div class="stui-vodlist__detail">
+                                            <h4 class="title text-overflow">
+                                                <a href="/detail/714892238.html" title="孤海沙堡">孤海沙堡</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="stui-vodlist__box">
+                                        <a class="stui-vodlist__thumb lazyload" href="/detail/714892235.html" title="诺斯费拉图" data-original="https://y.gtimg.cn/music/photo_new/T053M000000AAJ9h2Lue40.jpg">
+                                            <span class="play hidden-xs"></span>
+                                            <span class="pic-text text-right">已完结</span>
+                                            <span class="pic-tag pic-tag-top">0.0</span>
+                                        </a>
+                                        <div class="stui-vodlist__detail">
+                                            <h4 class="title text-overflow">
+                                                <a href="/detail/714892235.html" title="诺斯费拉图">诺斯费拉图</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="stui-vodlist__box">
+                                        <a class="stui-vodlist__thumb lazyload" href="/detail/714892231.html" title="重返行动" data-original="https://y.gtimg.cn/music/photo_new/T053M000003HkoxW1n1nJA.jpg">
+                                            <span class="play hidden-xs"></span>
+                                            <span class="pic-text text-right">已完结</span>
+                                            <span class="pic-tag pic-tag-top">0.0</span>
+                                        </a>
+                                        <div class="stui-vodlist__detail">
+                                            <h4 class="title text-overflow">
+                                                <a href="/detail/714892231.html" title="重返行动">重返行动</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="stui-vodlist__box">
+                                        <a class="stui-vodlist__thumb lazyload" href="/detail/714892223.html" title="好东西" data-original="https://y.gtimg.cn/music/photo_new/T053M000000IolPi0xO6jG.jpg">
+                                            <span class="play hidden-xs"></span>
+                                            <span class="pic-text text-right">4K网</span>
+                                            <span class="pic-tag pic-tag-top">9.1</span>
+                                        </a>
+                                        <div class="stui-vodlist__detail">
+                                            <h4 class="title text-overflow">
+                                                <a href="/detail/714892223.html" title="好东西">好东西</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="stui-vodlist__box">
+                                        <a class="stui-vodlist__thumb lazyload" href="/detail/714892147.html" title="猎人克莱文" data-original="https://y.gtimg.cn/music/photo_new/T053M000000jbt5v2XPVBd.jpg">
+                                            <span class="play hidden-xs"></span>
+                                            <span class="pic-text text-right">网盘</span>
+                                            <span class="pic-tag pic-tag-top">5.8</span>
+                                        </a>
+                                        <div class="stui-vodlist__detail">
+                                            <h4 class="title text-overflow">
+                                                <a href="/detail/714892147.html" title="猎人克莱文">猎人克莱文</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="stui-vodlist__box">
+                                        <a class="stui-vodlist__thumb lazyload" href="/detail/714892178.html" title="隐藏的面孔" data-original="https://y.gtimg.cn/music/photo_new/T053M000002YJC4q0x19Kv.jpg">
+                                            <span class="play hidden-xs"></span>
+                                            <span class="pic-text text-right">1080P</span>
+                                            <span class="pic-tag pic-tag-top">7.6</span>
+                                        </a>
+                                        <div class="stui-vodlist__detail">
+                                            <h4 class="title text-overflow">
+                                                <a href="/detail/714892178.html" title="隐藏的面孔">隐藏的面孔</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="stui-vodlist__box">
+                                        <a class="stui-vodlist__thumb lazyload" href="/detail/714892212.html" title="隔壁房间" data-original="https://y.gtimg.cn/music/photo_new/T053M000000KJm6k3mR4F1.jpg">
+                                            <span class="play hidden-xs"></span>
+                                            <span class="pic-text text-right">已完结</span>
+                                            <span class="pic-tag pic-tag-top">7.7</span>
+                                        </a>
+                                        <div class="stui-vodlist__detail">
+                                            <h4 class="title text-overflow">
+                                                <a href="/detail/714892212.html" title="隔壁房间">隔壁房间</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="stui-vodlist__box">
+                                        <a class="stui-vodlist__thumb lazyload" href="/detail/714892180.html" title="慢行列车" data-original="https://y.gtimg.cn/music/photo_new/T053M000004HAQNk4K8qXW.jpg">
+                                            <span class="play hidden-xs"></span>
+                                            <span class="pic-text text-right">已完结</span>
+                                            <span class="pic-tag pic-tag-top">7.4</span>
+                                        </a>
+                                        <div class="stui-vodlist__detail">
+                                            <h4 class="title text-overflow">
+                                                <a href="/detail/714892180.html" title="慢行列车">慢行列车</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="stui-vodlist__box">
+                                        <a class="stui-vodlist__thumb lazyload" href="/detail/714892159.html" title="指环王：洛汗之战" data-original="https://y.gtimg.cn/music/photo_new/T053M000000uwtUJ2jxaDT.jpg">
+                                            <span class="play hidden-xs"></span>
+                                            <span class="pic-text text-right">网盘</span>
+                                            <span class="pic-tag pic-tag-top">6.8</span>
+                                        </a>
+                                        <div class="stui-vodlist__detail">
+                                            <h4 class="title text-overflow">
+                                                <a href="/detail/714892159.html" title="指环王：洛汗之战">指环王：洛汗之战</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="stui-vodlist__box">
+                                        <a class="stui-vodlist__thumb lazyload" href="/detail/714892169.html" title="超级无敌掌门狗：企鹅的复仇" data-original="https://y.gtimg.cn/music/photo_new/T053M000003ZJrn93UEzsh.jpg">
+                                            <span class="play hidden-xs"></span>
+                                            <span class="pic-text text-right">已完结</span>
+                                            <span class="pic-tag pic-tag-top">0.0</span>
+                                        </a>
+                                        <div class="stui-vodlist__detail">
+                                            <h4 class="title text-overflow">
+                                                <a href="/detail/714892169.html" title="超级无敌掌门狗：企鹅的复仇">超级无敌掌门狗：企鹅的复仇</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="stui-vodlist__box">
+                                        <a class="stui-vodlist__thumb lazyload" href="/detail/714892164.html" title="魔法坏女巫" data-original="https://y.gtimg.cn/music/photo_new/T053M0000018ziqH2sY0i5.jpg">
+                                            <span class="play hidden-xs"></span>
+                                            <span class="pic-text text-right">已完结</span>
+                                            <span class="pic-tag pic-tag-top">7.3</span>
+                                        </a>
+                                        <div class="stui-vodlist__detail">
+                                            <h4 class="title text-overflow">
+                                                <a href="/detail/714892164.html" title="魔法坏女巫">魔法坏女巫</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="stui-pannel__ft">
+                            <ul class="stui-page__item text-center clearfix">
+                                <li>
+                                    <a href="/type/1-1.html">首页</a>
+                                </li>
+                                <li>
+                                    <a href="/type/1-1.html">上一页</a>
+                                </li>
+                                <li class="hidden-xs active">
+                                    <a href="/type/1-1.html">1</a>
+                                </li>
+                                <li class="hidden-xs ">
+                                    <a href="/type/1-2.html">2</a>
+                                </li>
+                                <li class="hidden-xs ">
+                                    <a href="/type/1-3.html">3</a>
+                                </li>
+                                <li class="hidden-xs ">
+                                    <a href="/type/1-4.html">4</a>
+                                </li>
+                                <li class="hidden-xs ">
+                                    <a href="/type/1-5.html">5</a>
+                                </li>
+                                <li class="active num">
+                                    <a>1/256</a>
+                                </li>
+                                <li>
+                                    <a href="/type/1-2.html">下一页</a>
+                                </li>
+                                <li>
+                                    <a href="/type/1-256.html">尾页</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="stui-page__all">
+                <a class="left" href="/type/1-1.html">
+                    <i class="iconfont icon-back"></i>
+                </a>
+                <a class="right" href="/type/1-2.html">
+                    <i class="iconfont icon-more"></i>
+                </a>
+            </div>
+            <script type="text/javascript">
+                $(".open-screen").click(function() {
+                    var display = $('#screenbox').css('display');
+                    if (display == 'block') {
+                        $("#screenbox").slideUp("slow");
+                        $(this).html('展开 <i class="iconfont icon-moreunfold"></i>')
+                    } else {
+                        $("#screenbox").slideDown("slow");
+                        $(this).html('收起 <i class="iconfont icon-less"></i>')
+                    }
+                });
+            </script>
+            <div class="hide">统计代码</div>
+            <link rel="stylesheet" href="/statics/css/notice.css" type="text/css">
+            <script type="text/javascript" src="/statics/js/pop.js"></script>
+            <div class="popup" id="note" style="display: none;">
+                <div class="popup-icon">
+                    <img src="/statics/img/logo2.png">
+                </div>
+                <div class="popup-header">
+                    <h3 class="popup-title"></h3>
+                </div>
+                <div class="popup-main">
+                    <p style="font-size:18px;color:red">
+                        <b>网址失效问题：</b>
+                    </p>
+                    <p>请发送您所在地区+网络+网址至help@libvio.com获取最新网址或记住我们的永久发布地址：libvio.app！资源问题请等待恢复！以上问题均可通过邮件反馈！</p>
+                    <p>
+                        👉<a href="/fCuxIdNBxrxWfsLXkn3" style="color: #10AEFF;" target="_blank">【图-集】</a>
+                        👈
+                    </p>
+                    <p>
+                        👉<a href="/fCuxIdNBxrxWfsLXkn2" style="color: #10AEFF;" target="_blank">【吃-瓜】</a>
+                        👈
+                    </p>
+                    <p>
+                        👉<a href="/fCuxIdNBxrxWfsLXkn" style="color: #10AEFF;" target="_blank">【体-育】</a>
+                        👈
+                    </p>
+                </div>
+                <div class="popup-footer">
+                    <span class="popup-btn" onclick="closeclick()">我记住啦</span>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
